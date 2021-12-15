@@ -1,6 +1,6 @@
 
 -- Created by Xsticcy --
--- Version: 2021 | 5 Dec --
+-- Version: 2021 | 15 Dec --
 
 local DataStoreService = game:GetService("DataStoreService")
 local DataStore = DataStoreService:GetDataStore("NatureStore")
@@ -20,21 +20,14 @@ NatureStore.ERROR = "NS_ERROR"
 local playerData = {}
 local wideTemplate = {}
 
-if game["Run Service"]:IsStudio() then
+game:BindToClose(function()
+	wait(1)
+end)
 
-	game:BindToClose(function()
-		if not saveOnLeave then return end
-		NatureStore:ApplyAll()
-	end)
-	
-else
-
-	game.Players.PlayerRemoving:Connect(function(plr)
-		if not saveOnLeave then return end
-		NatureStore:ApplyPlayerData(plr.UserId)
-	end)
-	
-end
+game.Players.PlayerRemoving:Connect(function(plr)
+	if not saveOnLeave then return end
+	NatureStore:ApplyPlayerData(plr.UserId)
+end)
 
 function NatureStore:DisableSaveOnLeave()
 	saveOnLeave = false
