@@ -1,5 +1,5 @@
 -- Created by Xsticcy --
--- Version: 2022 | 12 April --
+-- Version: 2023 | 12 April --
 --!strict
 local NatureStore = {}
 
